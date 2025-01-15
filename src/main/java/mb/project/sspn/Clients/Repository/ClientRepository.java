@@ -33,11 +33,18 @@ public class ClientRepository {
 
     public void updateClient(Client client) {
         String sql = "UPDATE SET name = ?, email = ?, WHERE clientId = ?";
-        jdbc.update(sql, client.getName(), client.getEmail(), client.getClientId())
+        jdbc.update(sql, client.getName(), client.getEmail(), client.getClientId());
     }
 
     public void deleteClient(int id) {
         String sql = "DELETE FROM Clients WHERE clientId = ?";
         jdbc.update(sql, id);
+    }
+
+
+    public boolean exist(int id) {
+        String sql = "SELECT COUNT (*) FROM Clients WHERE clientId = ?";
+        Integer count = jdbc.queryForObject(sql, Integer.class, id);
+        return count != null && count > 0;
     }
 }
