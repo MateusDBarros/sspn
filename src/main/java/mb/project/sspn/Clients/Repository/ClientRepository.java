@@ -33,7 +33,11 @@ public class ClientRepository {
 
     public void updateClient(Client client) {
         String sql = "UPDATE SET name = ?, email = ?, WHERE clientId = ?";
-        client.setClientId();
         jdbc.update(sql, client.getName(), client.getEmail(), client.getClientId())
+    }
+
+    public void deleteClient(int id) {
+        String sql = "DELETE FROM Clients WHERE clientId = ?";
+        jdbc.update(sql, id);
     }
 }
