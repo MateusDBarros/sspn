@@ -34,12 +34,13 @@ public class FinanceRepository {
         );
     }
 
-    public void validade(Finance finance) {
+    public Boolean validade(Finance finance) {
         if (finance.getTransaction() == null || (!finance.getTransaction().equalsIgnoreCase("entrada") && !finance.getTransaction().equalsIgnoreCase("saida")))
             throw new IllegalStateException("O tipo deve ser 'entrada' ou 'saida'.");
         if (finance.getValue() <= 0)
             throw new IllegalStateException("O valor deve ser maior que zero.");
         if (finance.getDescription() == null || finance.getDescription().isEmpty())
             throw new IllegalStateException("Por favor insira uma descrição valida do produto");
+        return true;
     }
 }
