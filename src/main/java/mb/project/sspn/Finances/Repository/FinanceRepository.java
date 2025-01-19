@@ -34,7 +34,7 @@ public class FinanceRepository {
         );
     }
 
-    public Boolean validade(Finance finance) {
+    public boolean validade(Finance finance) {
         if (finance.getTransaction() == null || (!finance.getTransaction().equalsIgnoreCase("entrada") && !finance.getTransaction().equalsIgnoreCase("saida")))
             throw new IllegalStateException("O tipo deve ser 'entrada' ou 'saida'.");
         if (finance.getValue() <= 0)

@@ -43,4 +43,23 @@ public class ProductRepository {
         String sql = "DELETE FROM Products WHERE productId = ?";
         jdbc.update(sql, id);
     }
+
+    public Boolean validate(Product product) {
+        if (product.getName() == null || product.getName().isEmpty())
+            throw new IllegalStateException("Por favor insira um nome valido para o produto.");
+        if (product.getDescription() == null || product.getDescription().isEmpty())
+            throw new IllegalStateException("Por favor insira uma descrição valida para o produto.");
+        if (product.getValue() <= 0)
+            throw new IllegalStateException("O valor do produto deve ser maior que zero.");
+        if (product.getQuantity() <= 0)
+            throw new IllegalStateException("A quantidade do produto deve ser maior que zero.");
+
+        return true;
+    }
+
+    public boolean exist(int id) {
+        String sql = "SELECT COUNT (*) FROM Products WHERE productId = ?";
+        Integer count = jdbc.queryForObject(sql, Integer.class, id);
+        return count != null && count > 0;
+    }
 }
