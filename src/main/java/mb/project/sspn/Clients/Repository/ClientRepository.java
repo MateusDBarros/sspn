@@ -32,7 +32,7 @@ public class ClientRepository {
     }
 
     public void updateClient(Client client) {
-        String sql = "UPDATE SET name = ?, email = ?, WHERE clientId = ?";
+        String sql = "UPDATE Clients SET name = ?, email = ?, WHERE clientId = ?";
         jdbc.update(sql, client.getName(), client.getEmail(), client.getClientId());
     }
 
