@@ -32,7 +32,7 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.OK).body(clients);
     }
 
-    @PostMapping("{clientId}")
+    @PostMapping("/{clientId}")
     public ResponseEntity<String> updateClient(@RequestBody Client client, @RequestParam int id) {
         client.setClientId(id);
         services.updateClient(client);
@@ -40,7 +40,7 @@ public class ClientController {
     }
 
 
-    @DeleteMapping("{clientId}")
+    @DeleteMapping("/{clientId}")
     public ResponseEntity<String> deleteClient(@RequestParam int id) {
         services.deleteClient(id);
         return ResponseEntity.status(HttpStatus.OK).body("Client with ID: " +id+ " was deleted");

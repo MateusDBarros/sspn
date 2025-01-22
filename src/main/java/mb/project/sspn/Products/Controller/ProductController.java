@@ -30,14 +30,14 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }
 
-    @PutMapping("{productId}")
+    @PutMapping("/{productId}")
     public  ResponseEntity<String> updateProduct(@RequestBody Product product, @PathVariable int id) {
         product.setProductId(id);
         service.updateProduct(product);
         return ResponseEntity.status(HttpStatus.OK).body("Produto atualizado com sucesso");
     }
 
-    @DeleteMapping("{productId")
+    @DeleteMapping("/{productId")
     public ResponseEntity<String> deleteProduct(@PathVariable int id) {
         service.deleteProduct(id);
         return ResponseEntity.status(HttpStatus.OK).body("Produto excluido com sucesso.");
